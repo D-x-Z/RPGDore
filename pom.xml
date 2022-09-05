@@ -150,7 +150,7 @@
         </dependency>
         <dependency>
             <groupId>io.lumine</groupId>
-            <artifactId>Mythiclib-dist</artifactId>
+            <artifactId>MythicLib-dist</artifactId>
             <version>1.4.2-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
