@@ -41,4 +41,4 @@ jobs:
           embed-description: |
             ${{ github.event.head_commit.message }}
             
-            [`Click to download`](https://nightly.link/${{github.repository}}/actions/runs/${{ github.run_id }}/%5B%23${{github.run_number}}%5D-RPGDore.zip)
+            [`Click to download`](https://nightly.link/${{github.repository}}/workflows/Development-Builds/master/%5B%23${{github.run_number}}%5D-RPGDore.zip)
