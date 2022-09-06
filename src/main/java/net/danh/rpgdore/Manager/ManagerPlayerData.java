@@ -1,12 +1,10 @@
 package net.danh.rpgdore.Manager;
 
-import net.danh.dcore.Resource.Files;
 import net.danh.rpgdore.Manager.PData.Level;
 import net.danh.rpgdore.Manager.PData.Mana;
 import net.danh.rpgdore.Manager.PData.Stamina;
 import net.danh.rpgdore.Manager.PData.XP;
 import net.danh.rpgdore.RPGDore;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -50,10 +48,6 @@ public class ManagerPlayerData {
         }
 
         return playerStats;
-    }
-
-    public static FileConfiguration getConfig() {
-        return new Files(RPGDore.getRPGDore(), "config").getConfig();
     }
 
 }

@@ -3,6 +3,10 @@ version: '${project.version}'
 main: net.danh.rpgdore.RPGDore
 api-version: 1.13
 authors: [ VoChiDanh ]
+depend:
+  - MMOItems
+  - MythicLib
+  - MythicMobs
 commands:
   RPGDore:
     usage: /RPGDore

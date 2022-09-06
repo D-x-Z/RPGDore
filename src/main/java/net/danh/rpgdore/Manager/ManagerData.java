@@ -6,9 +6,7 @@ public enum ManagerData {
     STAMINA("stamina"),
     MAX_STAMINA("max_stamina"),
     LEVEL("level"),
-    MAX_LEVEL("max_level"),
-    XP("xp"),
-    MAX_XP("max_xp");
+    XP("xp");
 
     private final String name;
 

@@ -12,6 +12,7 @@ import net.danh.rpgdore.Manager.PData.Level;
 import net.danh.rpgdore.Manager.PData.Mana;
 import net.danh.rpgdore.Manager.PData.Stamina;
 import net.danh.rpgdore.Manager.PData.XP;
+import net.danh.rpgdore.Resource.File;
 import org.bukkit.entity.Player;
 
 import java.util.Objects;
@@ -40,7 +41,7 @@ public class Mechanic implements ITargetedEntitySkill {
                             int RPGDore = new Random().nextInt(Integer.parseInt(amount.split("-")[0]), Integer.parseInt(amount.split("-")[1]));
                             if (type.equalsIgnoreCase("xp")) {
                                 XP.addXP(p, RPGDore);
-                                Hologram.createHolo(p, data.getCaster().getLocation().toPosition().toLocation(), Objects.requireNonNull(ManagerPlayerData.getConfig().getString("holo.xp"))
+                                Hologram.createHolo(p, data.getCaster().getLocation().toPosition().toLocation(), Objects.requireNonNull(File.getConfig().getConfig().getString("holo.xp"))
                                         .replaceAll("#xp#", String.format("%,d", RPGDore))
                                         .replaceAll("#player#", p.getDisplayName()));
                                 return SkillResult.SUCCESS;
@@ -69,7 +70,7 @@ public class Mechanic implements ITargetedEntitySkill {
                             int RPGDore = Integer.parseInt(amount.split("-")[0]);
                             if (type.equalsIgnoreCase("xp")) {
                                 XP.addXP(p, RPGDore);
-                                Hologram.createHolo(p, data.getCaster().getLocation().toPosition().toLocation(), Objects.requireNonNull(ManagerPlayerData.getConfig().getString("holo.xp"))
+                                Hologram.createHolo(p, data.getCaster().getLocation().toPosition().toLocation(), Objects.requireNonNull(File.getConfig().getConfig().getString("holo.xp"))
                                         .replaceAll("#xp#", String.format("%,d", RPGDore))
                                         .replaceAll("#player#", p.getDisplayName()));
                                 return SkillResult.SUCCESS;
@@ -99,7 +100,7 @@ public class Mechanic implements ITargetedEntitySkill {
                         int RPGDore = Integer.parseInt(amount);
                         if (type.equalsIgnoreCase("xp")) {
                             XP.addXP(p, RPGDore);
-                            Hologram.createHolo(p, data.getCaster().getLocation().toPosition().toLocation(), Objects.requireNonNull(ManagerPlayerData.getConfig().getString("holo.xp"))
+                            Hologram.createHolo(p, data.getCaster().getLocation().toPosition().toLocation(), Objects.requireNonNull(File.getConfig().getConfig().getString("holo.xp"))
                                     .replaceAll("#xp#", String.format("%,d", RPGDore))
                                     .replaceAll("#player#", p.getDisplayName()));
                             return SkillResult.SUCCESS;
