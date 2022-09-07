@@ -22,25 +22,30 @@ public class FileManager {
         this.config = YamlConfiguration.loadConfiguration(this.file);
     }
 
-    public void load() {
+    public void load(boolean isEmptyFile) {
         File file = new File(this.core.getDataFolder(), folder + File.separator + this.name + ".yml");
         if (!file.exists()) {
             try {
-                this.core.saveResource(folder + File.separator + this.name + ".yml", false);
+                if (!isEmptyFile) {
+                    this.core.saveResource(folder + File.separator + this.name + ".yml", false);
+                } else {
+                    file.getParentFile().mkdirs();
+                    file.createNewFile();
+                }
             } catch (Exception var3) {
                 var3.printStackTrace();
             }
         }
-
         this.config = YamlConfiguration.loadConfiguration(file);
     }
 
-    public void loadWithEmptyFile() {
+    public void load() {
         File file = new File(this.core.getDataFolder(), folder + File.separator + this.name + ".yml");
+        File ex = new File(this.core.getDataFolder(), folder + File.separator + "ex-class-file.yml");
         if (!file.exists()) {
-            file.getParentFile().mkdirs();
             try {
-                file.createNewFile();
+                this.core.saveResource(folder + File.separator + "ex-class-file.yml", false);
+                ex.renameTo(file);
             } catch (Exception var3) {
                 var3.printStackTrace();
             }
@@ -60,12 +65,21 @@ public class FileManager {
         return this.config;
     }
 
-    public void save() {
-        try {
-            this.config.save(this.file);
-        } catch (Exception var2) {
-            var2.printStackTrace();
+    public void save(boolean isClassFile, boolean isEmptyFile) {
+        if (this.file.exists()) {
+            try {
+                this.config.save(this.file);
+            } catch (Exception var2) {
+                var2.printStackTrace();
+            }
+        } else {
+            if (isClassFile) {
+                load();
+            } else {
+                load(isEmptyFile);
+            }
+            save(isClassFile, isEmptyFile);
         }
-
     }
+
 }

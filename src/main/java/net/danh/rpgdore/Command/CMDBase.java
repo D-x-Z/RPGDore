@@ -6,6 +6,7 @@ import net.danh.rpgdore.Manager.PData.Mana;
 import net.danh.rpgdore.Manager.PData.Stamina;
 import net.danh.rpgdore.Manager.PData.XP;
 import net.danh.rpgdore.Manager.Version;
+import net.danh.rpgdore.Resource.File;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -39,6 +40,9 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
                     sendPlayerMessage(p, "&6Dev Build:&f " + new Version().isDevBuild().getSymbol());
                     sendPlayerMessage(p, "&6Release Link:&f " + new Version().getReleaseLink());
                     sendPlayerMessage(p, "&e&m                     &b RPGDore &e&m                    ");
+                }
+                if (args[0].equalsIgnoreCase("reload")) {
+                    File.reloadFiles(p);
                 }
             }
             if (args.length == 4) {
@@ -120,6 +124,9 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
                 sendConsoleMessage(c, "&6Dev Build:&f " + new Version().isDevBuild().getSymbol());
                 sendConsoleMessage(c, "&6Release Link:&f " + new Version().getReleaseLink());
                 sendConsoleMessage(c, "&e-------------------- &bRPGDore &e--------------------");
+            }
+            if (args[0].equalsIgnoreCase("reload")) {
+                File.reloadFiles(c);
             }
         }
         if (args.length == 4) {
@@ -204,6 +211,7 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
                 commands.add("max_stamina");
                 commands.add("version");
                 commands.add("v");
+                commands.add("reload");
                 StringUtil.copyPartialMatches(args[0], commands, completions);
             }
             if (args.length == 2) {

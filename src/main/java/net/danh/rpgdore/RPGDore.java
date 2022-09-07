@@ -13,12 +13,15 @@ import net.danh.rpgdore.Hook.MythicMobs.Event.Mechanic;
 import net.danh.rpgdore.Hook.MythicMobs.Event.Reload;
 import net.danh.rpgdore.Hook.PlaceholderAPI;
 import net.danh.rpgdore.MMOItems.Handler;
+import net.danh.rpgdore.Manager.Class.ClassManager;
 import net.danh.rpgdore.Manager.Hologram;
 import net.danh.rpgdore.Manager.ManagerPlayerData;
 import net.danh.rpgdore.Resource.File;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Objects;
 
 public final class RPGDore extends JavaPlugin {
 
@@ -64,6 +67,7 @@ public final class RPGDore extends JavaPlugin {
         registerCMD();
         loadFiles();
         loadDataBase();
+        registerClass();
         getServer().getOnlinePlayers().forEach(ManagerPlayerData::loadPlayerData);
         RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Loaded data for online players while the plugin was starting"));
         RPGDore.getRPGDore().getLogger().info(Chat.colorize("#dbdf7f-------------------- &bRPGDore #dbdf7f--------------------"));
@@ -177,6 +181,17 @@ public final class RPGDore extends JavaPlugin {
         RPGDore.getRPGDore().getLogger().info(Chat.colorize("&7"));
     }
 
+    public void registerClass() {
+        for (String class_name : Objects.requireNonNull(File.getConfig().getConfig().getConfigurationSection("class")).getKeys(false)) {
+            boolean enable = File.getConfig().getConfig().getBoolean("class." + class_name + ".enable");
+            int priority = File.getConfig().getConfig().getInt("class." + class_name + ".priority");
+            ClassManager classManager = new ClassManager(class_name);
+            if (enable) {
+                classManager.getFileManager().save(true, false);
+                getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Loaded class " + class_name + " with priority " + priority));
+            }
+        }
+    }
 
     public enum SERVER_TYPE {
         PAPER, SPIGOT, BUKKIT
