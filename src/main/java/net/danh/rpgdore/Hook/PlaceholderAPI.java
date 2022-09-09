@@ -1,10 +1,7 @@
 package net.danh.rpgdore.Hook;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import net.danh.rpgdore.Manager.PData.Level;
-import net.danh.rpgdore.Manager.PData.Mana;
-import net.danh.rpgdore.Manager.PData.Stamina;
-import net.danh.rpgdore.Manager.PData.XP;
+import net.danh.rpgdore.Manager.PData.*;
 import net.danh.rpgdore.RPGDore;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -54,6 +51,9 @@ public class PlaceholderAPI extends PlaceholderExpansion {
         }
         if (args.equalsIgnoreCase("max_stamina")) {
             return String.valueOf(Stamina.getMaxStamina(p));
+        }
+        if (args.equalsIgnoreCase("class")) {
+            return ClassName.getClassName(p);
         }
         if (args.equalsIgnoreCase("version")) {
             return getVersion();

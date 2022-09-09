@@ -1,10 +1,7 @@
 package net.danh.rpgdore.Command;
 
 import net.danh.dcore.NMS.NMSAssistant;
-import net.danh.rpgdore.Manager.PData.Level;
-import net.danh.rpgdore.Manager.PData.Mana;
-import net.danh.rpgdore.Manager.PData.Stamina;
-import net.danh.rpgdore.Manager.PData.XP;
+import net.danh.rpgdore.Manager.PData.*;
 import net.danh.rpgdore.Manager.Version;
 import net.danh.rpgdore.Resource.File;
 import org.bukkit.Bukkit;
@@ -66,6 +63,9 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
                     }
                     if (args[0].equalsIgnoreCase("max_stamina")) {
                         Stamina.setMaxStamina(t, Integer.valueOf(args[3]));
+                    }
+                    if (args[0].equalsIgnoreCase("class")) {
+                        ClassName.setClassName(t, args[3]);
                     }
                 }
                 if (args[1].equalsIgnoreCase("add")) {
@@ -151,6 +151,9 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
                 if (args[0].equalsIgnoreCase("max_stamina")) {
                     Stamina.setMaxStamina(t, Integer.valueOf(args[3]));
                 }
+                if (args[0].equalsIgnoreCase("class")) {
+                    ClassName.setClassName(t, args[3]);
+                }
             }
             if (args[1].equalsIgnoreCase("add")) {
                 if (args[0].equalsIgnoreCase("xp")) {
@@ -199,7 +202,7 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
     public List<String> TabComplete(CommandSender sender, String[] args) {
         List<String> completions = new ArrayList<>();
         List<String> commands = new ArrayList<>();
-        List<String> arg_1 = new ArrayList<>(Arrays.asList("xp", "level", "mana", "max_mana", "stamina", "max_stamina"));
+        List<String> arg_1 = new ArrayList<>(Arrays.asList("xp", "level", "mana", "max_mana", "stamina", "max_stamina", "class"));
         List<String> arg_2 = new ArrayList<>(Arrays.asList("add", "set", "remove"));
         if (sender.hasPermission("RPGDore.admin")) {
             if (args.length == 1) {
@@ -209,6 +212,7 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
                 commands.add("max_mana");
                 commands.add("stamina");
                 commands.add("max_stamina");
+                commands.add("class");
                 commands.add("version");
                 commands.add("v");
                 commands.add("reload");

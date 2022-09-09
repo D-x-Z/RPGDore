@@ -7,7 +7,6 @@ import io.lumine.mythic.api.skills.SkillMetadata;
 import io.lumine.mythic.api.skills.SkillResult;
 import io.lumine.mythic.bukkit.BukkitAdapter;
 import net.danh.rpgdore.Manager.Hologram;
-import net.danh.rpgdore.Manager.ManagerPlayerData;
 import net.danh.rpgdore.Manager.PData.Level;
 import net.danh.rpgdore.Manager.PData.Mana;
 import net.danh.rpgdore.Manager.PData.Stamina;

@@ -1,7 +1,5 @@
 package net.danh.rpgdore.Manager.Class;
 
-import io.lumine.mythic.api.skills.SkillCaster;
-import io.lumine.mythic.bukkit.BukkitAdapter;
 import io.lumine.mythic.bukkit.MythicBukkit;
 import net.danh.dcore.Utils.Chat;
 import net.danh.rpgdore.Manager.PData.Level;
@@ -58,21 +56,13 @@ public class ClassManager {
     public void castSkill(Player p, String skill) {
         int level = Level.getLevel(p);
         int req = getReqSkills(skill);
-        if (level >= req) {
-            MythicBukkit.inst().getSkillManager().getSkill(skill).ifPresentOrElse(value -> {
-                if (!value.onCooldown((SkillCaster) BukkitAdapter.adapt(p))) {
-                    MythicBukkit.inst().getAPIHelper().castSkill(p, value.getInternalName());
-                } else {
-                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("skill_cooldown", "&cSkill #name# on cooldown")
-                            .replaceAll("#name#", skill));
-                }
-            }, () -> net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("skill_is_null", "&cSkill #name# is null")
-                    .replace("#name#", skill)));
-        } else {
-            net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("not_enough_level", "&cYou need reach level #level#")
-                    .replace("#level#", String.valueOf(level)));
+        if (getSkillName().contains(skill)) {
+            if (level >= req) {
+                MythicBukkit.inst().getSkillManager().getSkill(skill).ifPresentOrElse(value -> MythicBukkit.inst().getAPIHelper().castSkill(p, value.getInternalName()), () -> net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("skill_is_null", "&cSkill #name# is null").replace("#name#", skill)));
+            } else {
+                net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("not_enough_level", "&cYou need reach level #level#").replace("#level#", String.valueOf(req)));
+            }
         }
     }
-
 }
 

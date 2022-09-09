@@ -5,6 +5,7 @@ import net.danh.dcore.NMS.NMSAssistant;
 import net.danh.dcore.Utils.Chat;
 import net.danh.dcore.Utils.Status;
 import net.danh.rpgdore.Command.CMDBase;
+import net.danh.rpgdore.Command.ClassCMD;
 import net.danh.rpgdore.Database.Database;
 import net.danh.rpgdore.Database.SQLite;
 import net.danh.rpgdore.Event.JoinQuit;
@@ -52,6 +53,14 @@ public final class RPGDore extends JavaPlugin {
             return true;
         } catch (ClassNotFoundException e) {
             return false;
+        }
+    }
+
+    @Override
+    public void onLoad() {
+        ins = this;
+        if (getServer().getPluginManager().getPlugin("MMOItems") != null) {
+            MMOItems.plugin.setRPG(new Handler());
         }
     }
 
@@ -127,7 +136,6 @@ public final class RPGDore extends JavaPlugin {
 
     public void MMOItemsHook() {
         if (getServer().getPluginManager().getPlugin("MMOItems") != null) {
-            MMOItems.plugin.setRPG(new Handler());
             RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Loaded system compatible with MMOItems"));
             RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Hooked RPGDore data (player's level, player's mana, player's stamina) to MMOItems"));
             RPGDore.getRPGDore().getLogger().info(Chat.colorize("&7"));
@@ -163,6 +171,7 @@ public final class RPGDore extends JavaPlugin {
 
     public void registerCMD() {
         new CMDBase(this);
+        new ClassCMD(this);
         RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Registered commands"));
         RPGDore.getRPGDore().getLogger().info(Chat.colorize("&7"));
     }
@@ -186,6 +195,8 @@ public final class RPGDore extends JavaPlugin {
             boolean enable = File.getConfig().getConfig().getBoolean("class." + class_name + ".enable");
             int priority = File.getConfig().getConfig().getInt("class." + class_name + ".priority");
             ClassManager classManager = new ClassManager(class_name);
+            ClassManager none = new ClassManager("NONE");
+            none.getFileManager().save(true, false);
             if (enable) {
                 classManager.getFileManager().save(true, false);
                 getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Loaded class " + class_name + " with priority " + priority));

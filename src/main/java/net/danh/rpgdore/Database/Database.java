@@ -46,7 +46,7 @@ public abstract class Database {
             ps = conn.prepareStatement("SELECT * FROM " + table + " WHERE player = '" + name + "';");
             rs = ps.executeQuery();
             if (rs.next()) {
-                playerData = new PlayerData(rs.getString("player"), rs.getInt("xp"), rs.getInt("level"), rs.getInt("mana"), rs.getInt("max_mana"), rs.getInt("stamina"), rs.getInt("max_stamina")); // Return the players amount of kills. If you wanted to get total (just a random number for an example for you guys) You would change this to total!
+                playerData = new PlayerData(rs.getString("player"), rs.getInt("xp"), rs.getInt("level"), rs.getInt("mana"), rs.getInt("max_mana"), rs.getInt("stamina"), rs.getInt("max_stamina"), rs.getString("class")); // Return the players amount of kills. If you wanted to get total (just a random number for an example for you guys) You would change this to total!
                 return playerData;
             } else {
                 return null;
@@ -71,7 +71,7 @@ public abstract class Database {
         PreparedStatement ps = null;
         try {
             conn = getSQLConnection();
-            ps = conn.prepareStatement("INSERT INTO " + table + " (player,xp,level,mana,max_mana,stamina,max_stamina) VALUES(?,?,?,?,?,?,?)"); // IMPORTANT. In SQLite class, We made 3 colums. player, Kills, Total.
+            ps = conn.prepareStatement("INSERT INTO " + table + " (player,xp,level,mana,max_mana,stamina,max_stamina,class) VALUES(?,?,?,?,?,?,?,?)");
             ps.setString(1, playerData.getPlayer());
             ps.setInt(2, playerData.getXP());
             ps.setInt(3, playerData.getLevel());
@@ -79,6 +79,7 @@ public abstract class Database {
             ps.setInt(5, playerData.getMaxMana());
             ps.setInt(6, playerData.getStamina());
             ps.setInt(7, playerData.getMaxMana());
+            ps.setString(8, playerData.getClassName());
             ps.executeUpdate();
         } catch (SQLException ex) {
             plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
@@ -99,7 +100,7 @@ public abstract class Database {
         PreparedStatement ps = null;
         try {
             conn = getSQLConnection();
-            ps = conn.prepareStatement("UPDATE " + table + " SET xp = ?, level = ?, mana = ?, max_mana = ?, stamina = ?, max_stamina = ? " +
+            ps = conn.prepareStatement("UPDATE " + table + " SET xp = ?, level = ?, mana = ?, max_mana = ?, stamina = ?, max_stamina = ?, class = ? " +
                     "WHERE player = ?");
             conn.setAutoCommit(false);
             ps.setInt(1, playerData.getXP());
@@ -108,7 +109,8 @@ public abstract class Database {
             ps.setInt(4, playerData.getMaxMana());
             ps.setInt(5, playerData.getStamina());
             ps.setInt(6, playerData.getMaxMana());
-            ps.setString(7, playerData.getPlayer());
+            ps.setString(7, playerData.getClassName());
+            ps.setString(8, playerData.getPlayer());
             ps.addBatch();
             ps.executeBatch();
             conn.commit();

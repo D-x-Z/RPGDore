@@ -9,8 +9,9 @@ public class PlayerData {
     private final Integer max_mana;
     private final Integer stamina;
     private final Integer max_stamina;
+    private final String class_name;
 
-    public PlayerData(String name, Integer xp, Integer level, Integer mana, Integer max_mana, Integer stamina, Integer max_stamina) {
+    public PlayerData(String name, Integer xp, Integer level, Integer mana, Integer max_mana, Integer stamina, Integer max_stamina, String class_name) {
         this.name = name;
         this.xp = xp;
         this.level = level;
@@ -18,6 +19,7 @@ public class PlayerData {
         this.max_mana = max_mana;
         this.stamina = stamina;
         this.max_stamina = max_stamina;
+        this.class_name = class_name;
     }
 
     public String getPlayer() {
@@ -46,5 +48,9 @@ public class PlayerData {
 
     public Integer getMaxStamina() {
         return max_stamina;
+    }
+
+    public String getClassName() {
+        return class_name;
     }
 }
