@@ -17,6 +17,8 @@ import net.danh.rpgdore.MMOItems.Handler;
 import net.danh.rpgdore.Manager.Class.ClassManager;
 import net.danh.rpgdore.Manager.Hologram;
 import net.danh.rpgdore.Manager.ManagerPlayerData;
+import net.danh.rpgdore.Manager.PData.Level;
+import net.danh.rpgdore.Manager.PData.XP;
 import net.danh.rpgdore.Resource.File;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -81,6 +83,13 @@ public final class RPGDore extends JavaPlugin {
         RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Loaded data for online players while the plugin was starting"));
         RPGDore.getRPGDore().getLogger().info(Chat.colorize("#dbdf7f-------------------- &bRPGDore #dbdf7f--------------------"));
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, Hologram::deleteHolo, 0L, 1L);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> getServer().getOnlinePlayers().forEach(p -> {
+            float xp = XP.getXP(p);
+            float level = Level.getLevel(p);
+            float req = level * 1000;
+            p.setExp(Float.parseFloat(String.valueOf(xp / req)));
+            p.setLevel((int) level);
+        }), 0L, 1L);
     }
 
     @Override

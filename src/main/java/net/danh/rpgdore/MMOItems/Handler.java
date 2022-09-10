@@ -3,6 +3,7 @@ package net.danh.rpgdore.MMOItems;
 import net.Indyuce.mmoitems.api.player.PlayerData;
 import net.Indyuce.mmoitems.api.player.RPGPlayer;
 import net.Indyuce.mmoitems.comp.rpg.RPGHandler;
+import net.danh.rpgdore.Manager.PData.ClassName;
 import net.danh.rpgdore.Manager.PData.Level;
 import net.danh.rpgdore.Manager.PData.Mana;
 import net.danh.rpgdore.Manager.PData.Stamina;
@@ -32,7 +33,7 @@ public class Handler implements RPGHandler {
 
         @Override
         public String getClassName() {
-            return "";
+            return ClassName.getClassName(getPlayer());
         }
 
         @Override
