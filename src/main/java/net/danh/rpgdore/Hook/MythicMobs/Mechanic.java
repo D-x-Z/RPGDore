@@ -7,10 +7,7 @@ import io.lumine.mythic.api.skills.SkillMetadata;
 import io.lumine.mythic.api.skills.SkillResult;
 import io.lumine.mythic.bukkit.BukkitAdapter;
 import net.danh.rpgdore.Manager.Hologram;
-import net.danh.rpgdore.Manager.PData.Level;
-import net.danh.rpgdore.Manager.PData.Mana;
-import net.danh.rpgdore.Manager.PData.Stamina;
-import net.danh.rpgdore.Manager.PData.XP;
+import net.danh.rpgdore.Manager.PData.*;
 import net.danh.rpgdore.Resource.File;
 import org.bukkit.entity.Player;
 
@@ -49,6 +46,10 @@ public class Mechanic implements ITargetedEntitySkill {
                                 Level.addLevel(p, RPGDore);
                                 return SkillResult.SUCCESS;
                             }
+                            if (type.equalsIgnoreCase("priority")) {
+                                Priority.addPriority(p, RPGDore);
+                                return SkillResult.SUCCESS;
+                            }
                             if (type.equalsIgnoreCase("mana")) {
                                 Mana.addMana(p, RPGDore);
                                 return SkillResult.SUCCESS;
@@ -76,6 +77,10 @@ public class Mechanic implements ITargetedEntitySkill {
                             }
                             if (type.equalsIgnoreCase("level")) {
                                 Level.addLevel(p, RPGDore);
+                                return SkillResult.SUCCESS;
+                            }
+                            if (type.equalsIgnoreCase("priority")) {
+                                Priority.addPriority(p, RPGDore);
                                 return SkillResult.SUCCESS;
                             }
                             if (type.equalsIgnoreCase("mana")) {
@@ -108,6 +113,10 @@ public class Mechanic implements ITargetedEntitySkill {
                             Level.addLevel(p, RPGDore);
                             return SkillResult.SUCCESS;
                         }
+                        if (type.equalsIgnoreCase("priority")) {
+                            Priority.addPriority(p, RPGDore);
+                            return SkillResult.SUCCESS;
+                        }
                         if (type.equalsIgnoreCase("mana")) {
                             Mana.addMana(p, RPGDore);
                             return SkillResult.SUCCESS;
@@ -138,6 +147,10 @@ public class Mechanic implements ITargetedEntitySkill {
                                 Level.removeLevel(p, RPGDore);
                                 return SkillResult.SUCCESS;
                             }
+                            if (type.equalsIgnoreCase("priority")) {
+                                Priority.removePriority(p, RPGDore);
+                                return SkillResult.SUCCESS;
+                            }
                             if (type.equalsIgnoreCase("mana")) {
                                 Mana.removeMana(p, RPGDore);
                                 return SkillResult.SUCCESS;
@@ -162,6 +175,10 @@ public class Mechanic implements ITargetedEntitySkill {
                             }
                             if (type.equalsIgnoreCase("level")) {
                                 Level.removeLevel(p, rpgdore);
+                                return SkillResult.SUCCESS;
+                            }
+                            if (type.equalsIgnoreCase("priority")) {
+                                Priority.removePriority(p, rpgdore);
                                 return SkillResult.SUCCESS;
                             }
                             if (type.equalsIgnoreCase("mana")) {
@@ -189,6 +206,10 @@ public class Mechanic implements ITargetedEntitySkill {
                         }
                         if (type.equalsIgnoreCase("level")) {
                             Level.removeLevel(p, rpgdore);
+                            return SkillResult.SUCCESS;
+                        }
+                        if (type.equalsIgnoreCase("priority")) {
+                            Priority.removePriority(p, rpgdore);
                             return SkillResult.SUCCESS;
                         }
                         if (type.equalsIgnoreCase("mana")) {
