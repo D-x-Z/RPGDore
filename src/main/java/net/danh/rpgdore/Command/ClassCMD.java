@@ -24,6 +24,9 @@ public class ClassCMD extends CMDBase {
 
     @Override
     public void playerexecute(Player p, String[] args) {
+        if (args.length == 1) {
+            net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getStringList("class_help"));
+        }
         if (args.length == 2) {
             if (args[0].equalsIgnoreCase("cast")) {
                 String skill = args[1];
@@ -37,45 +40,31 @@ public class ClassCMD extends CMDBase {
                 String skill = args[2];
                 if (combo.equalsIgnoreCase("RRR")) {
                     Manager.setSkill(p, Combo.MOT, skill);
-                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#")
-                            .replaceAll("#name#", skill)
-                            .replaceAll("#combo#", File.getMessage().getConfig().getString("combo.RRR", "Right Right Right")));
+                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#").replaceAll("#name#", skill).replaceAll("#combo#", File.getMessage().getConfig().getString("combo.RRR", "Right Right Right")));
                 }
                 if (combo.equalsIgnoreCase("RRL")) {
                     Manager.setSkill(p, Combo.HAI, skill);
-                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#")
-                            .replaceAll("#name#", skill)
-                            .replaceAll("#combo#", File.getMessage().getConfig().getString("combo.RRL", "Right Right Left")));
+                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#").replaceAll("#name#", skill).replaceAll("#combo#", File.getMessage().getConfig().getString("combo.RRL", "Right Right Left")));
                 }
                 if (combo.equalsIgnoreCase("RLR")) {
                     Manager.setSkill(p, Combo.BA, skill);
-                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#")
-                            .replaceAll("#name#", skill)
-                            .replaceAll("#combo#", File.getMessage().getConfig().getString("combo.RLR", "Right Left Right")));
+                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#").replaceAll("#name#", skill).replaceAll("#combo#", File.getMessage().getConfig().getString("combo.RLR", "Right Left Right")));
                 }
                 if (combo.equalsIgnoreCase("LRR")) {
                     Manager.setSkill(p, Combo.BON, skill);
-                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#")
-                            .replaceAll("#name#", skill)
-                            .replaceAll("#combo#", File.getMessage().getConfig().getString("combo.LRR", "Left Right Right")));
+                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#").replaceAll("#name#", skill).replaceAll("#combo#", File.getMessage().getConfig().getString("combo.LRR", "Left Right Right")));
                 }
                 if (combo.equalsIgnoreCase("LLR")) {
                     Manager.setSkill(p, Combo.NAM, skill);
-                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#")
-                            .replaceAll("#name#", skill)
-                            .replaceAll("#combo#", File.getMessage().getConfig().getString("combo.LLR", "Left Right Right")));
+                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#").replaceAll("#name#", skill).replaceAll("#combo#", File.getMessage().getConfig().getString("combo.LLR", "Left Right Right")));
                 }
                 if (combo.equalsIgnoreCase("LRL")) {
                     Manager.setSkill(p, Combo.SAU, skill);
-                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#")
-                            .replaceAll("#name#", skill)
-                            .replaceAll("#combo#", File.getMessage().getConfig().getString("combo.LRL", "Left Right Left")));
+                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#").replaceAll("#name#", skill).replaceAll("#combo#", File.getMessage().getConfig().getString("combo.LRL", "Left Right Left")));
                 }
                 if (combo.equalsIgnoreCase("RLL")) {
                     Manager.setSkill(p, Combo.BAY, skill);
-                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#")
-                            .replaceAll("#name#", skill)
-                            .replaceAll("#combo#", File.getMessage().getConfig().getString("combo.RLL", "Right Left Left")));
+                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("bind_skill", "&aBinded skill #name# to #combo#").replaceAll("#name#", skill).replaceAll("#combo#", File.getMessage().getConfig().getString("combo.RLL", "Right Left Left")));
                 }
             }
         }
@@ -94,6 +83,7 @@ public class ClassCMD extends CMDBase {
             List<String> combo = new ArrayList<>(Arrays.asList("RRR", "RRL", "RLR", "LRR", "LLR", "LRL", "RLL"));
             String classname = ClassName.getClassName(p);
             if (args.length == 1) {
+                commands.add("help");
                 commands.add("cast");
                 commands.add("bind");
                 StringUtil.copyPartialMatches(args[0], commands, completions);

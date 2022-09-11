@@ -38,6 +38,10 @@ public class ClassManager {
         return getFileManager().getConfig().getStringList("skills");
     }
 
+    public int getPriority() {
+        return File.getConfig().getConfig().getInt("class." + file + ".priority", 0);
+    }
+
     public List<String> getSkillName() {
         List<String> skills = new ArrayList<>();
         getListSkill().forEach(s -> skills.add(s.split(";")[0]));

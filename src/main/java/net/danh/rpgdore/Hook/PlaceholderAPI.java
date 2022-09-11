@@ -57,6 +57,9 @@ public class PlaceholderAPI extends PlaceholderExpansion {
         if (args.equalsIgnoreCase("class")) {
             return ClassName.getClassName(p);
         }
+        if (args.equalsIgnoreCase("priority")) {
+            return String.valueOf(Priority.getPriority(p));
+        }
         if (args.equalsIgnoreCase("skill_1")) {
             return Manager.getSkill(p, Combo.MOT);
         }

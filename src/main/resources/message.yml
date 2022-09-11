@@ -2,6 +2,17 @@ skill_is_null: "&cSkill #name# is null"
 not_enough_level: "&cYou need reach level #level#"
 skill_cooldown: "&cSkill #name# on cooldown"
 bind_skill: "&aBinded skill #name# to #combo#"
+not_enough_priority: "&cYou need reach priority #amount# to choose this class!"
+dore_help:
+  - "&a/rpgdore [TYPE] [ACTION] [PLAYER] [AMOUNT] - add/remove/set player's data type"
+  - "&bTYPE: xp, level, mana, max_mana, stamina, max_stamina, class (Only work with set), priority"
+  - "&bACTION: add, set, remove"
+  - "&a/rpgdore version - check plugin version"
+  - "&a/rpgdore reload - reload files"
+class_help:
+  - "&a/class cast <skill_name> - Cast skill by using command"
+  - "&a/class bind [COMBO] <skill_name> - Bind skill to combo"
+  - "&bCOMBO: RRR, RRL, RLR, LRR, LLR, LRL, RLL"
 combo:
   RRR: "Right Right Right"
   RRL: "Right Right Left"

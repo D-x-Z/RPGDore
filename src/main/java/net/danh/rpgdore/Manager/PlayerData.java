@@ -12,9 +12,10 @@ public class PlayerData {
     private final Integer stamina;
     private final Integer max_stamina;
     private final String class_name;
+    private final Integer priority;
     private final ComboManager comboManager;
 
-    public PlayerData(String name, Integer xp, Integer level, Integer mana, Integer max_mana, Integer stamina, Integer max_stamina, String class_name, ComboManager comboManager) {
+    public PlayerData(String name, Integer xp, Integer level, Integer mana, Integer max_mana, Integer stamina, Integer max_stamina, String class_name, Integer priority, ComboManager comboManager) {
         this.name = name;
         this.xp = xp;
         this.level = level;
@@ -23,6 +24,7 @@ public class PlayerData {
         this.stamina = stamina;
         this.max_stamina = max_stamina;
         this.class_name = class_name;
+        this.priority = priority;
         this.comboManager = comboManager;
     }
 
@@ -60,5 +62,9 @@ public class PlayerData {
 
     public ComboManager getComboManager() {
         return comboManager;
+    }
+
+    public Integer getPriority() {
+        return priority;
     }
 }

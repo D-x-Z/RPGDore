@@ -31,6 +31,7 @@ public class ManagerPlayerData {
             Stamina.setStamina(p, playerData.getStamina());
             Stamina.setMaxStamina(p, playerData.getMaxStamina());
             ClassName.setClassName(p, playerData.getClassName());
+            Priority.setPriority(p, playerData.getPriority());
             Manager.setSkill(p, Combo.MOT, playerData.getComboManager().getSkill1());
             Manager.setSkill(p, Combo.HAI, playerData.getComboManager().getSkill2());
             Manager.setSkill(p, Combo.BA, playerData.getComboManager().getSkill3());
@@ -46,7 +47,7 @@ public class ManagerPlayerData {
     public static void savePlayerData(Player p) {
         RPGDore.getDatabase().updateTable(new PlayerData(p.getName(), XP.getXP(p)
                 , Level.getLevel(p), Mana.getMana(p), Mana.getMaxMana(p), Stamina.getStamina(p), Stamina.getMaxStamina(p), ClassName.getClassName(p)
-                , new ComboManager(Manager.getSkill(p, Combo.MOT), Manager.getSkill(p, Combo.HAI)
+                , Priority.getPriority(p), new ComboManager(Manager.getSkill(p, Combo.MOT), Manager.getSkill(p, Combo.HAI)
                 , Manager.getSkill(p, Combo.BA), Manager.getSkill(p, Combo.BON), Manager.getSkill(p, Combo.NAM)
                 , Manager.getSkill(p, Combo.SAU), Manager.getSkill(p, Combo.BAY))));
     }
@@ -56,7 +57,7 @@ public class ManagerPlayerData {
         PlayerData playerStats = RPGDore.getDatabase().getPlayerData(player.getName());
 
         if (playerStats == null) {
-            playerStats = new PlayerData(player.getName(), 0, 1, 1000, 1000, 1000, 1000, "NONE", new ComboManager("NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"));
+            playerStats = new PlayerData(player.getName(), 0, 1, 1000, 1000, 1000, 1000, "NONE", 0, new ComboManager("NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"));
             RPGDore.getDatabase().createTable(playerStats);
         }
 

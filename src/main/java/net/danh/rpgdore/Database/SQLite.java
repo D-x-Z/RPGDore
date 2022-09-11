@@ -21,6 +21,7 @@ public class SQLite extends Database {
             "`stamina` BIGINT DEFAULT 1000," +
             "`max_stamina` BIGINT DEFAULT 1000," +
             "`class` LONGTEXT DEFAULT NONE," +
+            "`priority` BIGINT DEFAULT 0," +
             "`combo1` LONGTEXT DEFAULT NONE," +
             "`combo2` LONGTEXT DEFAULT NONE," +
             "`combo3` LONGTEXT DEFAULT NONE," +

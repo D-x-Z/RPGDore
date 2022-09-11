@@ -41,6 +41,9 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
                 if (args[0].equalsIgnoreCase("reload")) {
                     File.reloadFiles(p);
                 }
+                if (args[0].equalsIgnoreCase("help")) {
+                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getStringList("dore_help"));
+                }
             }
             if (args.length == 4) {
                 Player t = Bukkit.getPlayer(args[2]);
@@ -67,6 +70,9 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
                     if (args[0].equalsIgnoreCase("class")) {
                         ClassName.setClassName(t, args[3]);
                     }
+                    if (args[0].equalsIgnoreCase("priority")) {
+                        Priority.setPriority(t, Integer.valueOf(args[3]));
+                    }
                 }
                 if (args[1].equalsIgnoreCase("add")) {
                     if (args[0].equalsIgnoreCase("xp")) {
@@ -86,6 +92,9 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
                     }
                     if (args[0].equalsIgnoreCase("max_stamina")) {
                         Stamina.addMaxStamina(t, Integer.valueOf(args[3]));
+                    }
+                    if (args[0].equalsIgnoreCase("priority")) {
+                        Priority.addPriority(t, Integer.valueOf(args[3]));
                     }
                 }
                 if (args[1].equalsIgnoreCase("remove")) {
@@ -107,6 +116,9 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
                     if (args[0].equalsIgnoreCase("max_stamina")) {
                         Stamina.removeMaxStamina(t, Integer.valueOf(args[3]));
                     }
+                    if (args[0].equalsIgnoreCase("priority")) {
+                        Priority.removePriority(t, Integer.valueOf(args[3]));
+                    }
                 }
             }
         }
@@ -127,6 +139,9 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
             }
             if (args[0].equalsIgnoreCase("reload")) {
                 File.reloadFiles(c);
+            }
+            if (args[0].equalsIgnoreCase("help")) {
+                net.danh.dcore.Utils.Player.sendConsoleMessage(c, File.getMessage().getConfig().getStringList("dore_help"));
             }
         }
         if (args.length == 4) {
@@ -154,6 +169,9 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
                 if (args[0].equalsIgnoreCase("class")) {
                     ClassName.setClassName(t, args[3]);
                 }
+                if (args[0].equalsIgnoreCase("priority")) {
+                    Priority.setPriority(t, Integer.valueOf(args[3]));
+                }
             }
             if (args[1].equalsIgnoreCase("add")) {
                 if (args[0].equalsIgnoreCase("xp")) {
@@ -173,6 +191,9 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
                 }
                 if (args[0].equalsIgnoreCase("max_stamina")) {
                     Stamina.addMaxStamina(t, Integer.valueOf(args[3]));
+                }
+                if (args[0].equalsIgnoreCase("priority")) {
+                    Priority.addPriority(t, Integer.valueOf(args[3]));
                 }
             }
             if (args[1].equalsIgnoreCase("remove")) {
@@ -194,6 +215,9 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
                 if (args[0].equalsIgnoreCase("max_stamina")) {
                     Stamina.removeMaxStamina(t, Integer.valueOf(args[3]));
                 }
+                if (args[0].equalsIgnoreCase("priority")) {
+                    Priority.removePriority(t, Integer.valueOf(args[3]));
+                }
             }
         }
     }
@@ -202,18 +226,20 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
     public List<String> TabComplete(CommandSender sender, String[] args) {
         List<String> completions = new ArrayList<>();
         List<String> commands = new ArrayList<>();
-        List<String> arg_1 = new ArrayList<>(Arrays.asList("xp", "level", "mana", "max_mana", "stamina", "max_stamina", "class"));
+        List<String> arg_1 = new ArrayList<>(Arrays.asList("xp", "level", "mana", "max_mana", "stamina", "max_stamina", "class", "priority"));
         List<String> arg_2 = new ArrayList<>(Arrays.asList("add", "set", "remove"));
         if (sender.hasPermission("RPGDore.admin")) {
             if (args.length == 1) {
                 commands.add("xp");
                 commands.add("level");
+                commands.add("help");
                 commands.add("mana");
                 commands.add("max_mana");
                 commands.add("stamina");
                 commands.add("max_stamina");
                 commands.add("class");
                 commands.add("version");
+                commands.add("priority");
                 commands.add("v");
                 commands.add("reload");
                 StringUtil.copyPartialMatches(args[0], commands, completions);
