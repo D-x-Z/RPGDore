@@ -8,6 +8,7 @@ import net.danh.rpgdore.Command.CMDBase;
 import net.danh.rpgdore.Command.ClassCMD;
 import net.danh.rpgdore.Database.Database;
 import net.danh.rpgdore.Database.SQLite;
+import net.danh.rpgdore.Event.Interact;
 import net.danh.rpgdore.Event.JoinQuit;
 import net.danh.rpgdore.Hook.MythicMobs.Event.Condition;
 import net.danh.rpgdore.Hook.MythicMobs.Event.Mechanic;
@@ -15,6 +16,8 @@ import net.danh.rpgdore.Hook.MythicMobs.Event.Reload;
 import net.danh.rpgdore.Hook.PlaceholderAPI;
 import net.danh.rpgdore.MMOItems.Handler;
 import net.danh.rpgdore.Manager.Class.ClassManager;
+import net.danh.rpgdore.Manager.Combo.Combo;
+import net.danh.rpgdore.Manager.Combo.Manager;
 import net.danh.rpgdore.Manager.Hologram;
 import net.danh.rpgdore.Manager.ManagerPlayerData;
 import net.danh.rpgdore.Manager.PData.Level;
@@ -79,6 +82,7 @@ public final class RPGDore extends JavaPlugin {
         loadFiles();
         loadDataBase();
         registerClass();
+        registerCombo();
         getServer().getOnlinePlayers().forEach(ManagerPlayerData::loadPlayerData);
         RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Loaded data for online players while the plugin was starting"));
         RPGDore.getRPGDore().getLogger().info(Chat.colorize("#dbdf7f-------------------- &bRPGDore #dbdf7f--------------------"));
@@ -174,6 +178,7 @@ public final class RPGDore extends JavaPlugin {
 
     public void registerEvents() {
         getServer().getPluginManager().registerEvents(new JoinQuit(), this);
+        getServer().getPluginManager().registerEvents(new Interact(), this);
         RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Registered events"));
         RPGDore.getRPGDore().getLogger().info(Chat.colorize("&7"));
     }
@@ -197,6 +202,16 @@ public final class RPGDore extends JavaPlugin {
         db.load();
         RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Loaded player data (SQLite)"));
         RPGDore.getRPGDore().getLogger().info(Chat.colorize("&7"));
+    }
+
+    public void registerCombo() {
+        Manager.addCombo(Combo.MOT);
+        Manager.addCombo(Combo.HAI);
+        Manager.addCombo(Combo.BA);
+        Manager.addCombo(Combo.BON);
+        Manager.addCombo(Combo.NAM);
+        Manager.addCombo(Combo.SAU);
+        Manager.addCombo(Combo.BAY);
     }
 
     public void registerClass() {

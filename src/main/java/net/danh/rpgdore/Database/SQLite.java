@@ -21,6 +21,13 @@ public class SQLite extends Database {
             "`stamina` BIGINT DEFAULT 1000," +
             "`max_stamina` BIGINT DEFAULT 1000," +
             "`class` LONGTEXT DEFAULT NONE," +
+            "`combo1` LONGTEXT DEFAULT NONE," +
+            "`combo2` LONGTEXT DEFAULT NONE," +
+            "`combo3` LONGTEXT DEFAULT NONE," +
+            "`combo4` LONGTEXT DEFAULT NONE," +
+            "`combo5` LONGTEXT DEFAULT NONE," +
+            "`combo6` LONGTEXT DEFAULT NONE," +
+            "`combo7` LONGTEXT DEFAULT NONE," +
             "PRIMARY KEY (`player`)" +  // This is creating 3 columns RPGDorePlayer, Kills, Total. Primary key is what you are going to use as your indexer. Here we want to use player so
             ");"; // we can search by player, and get kills and total. If you have somehow were searching kills it would provide total and player.
     String dbname;

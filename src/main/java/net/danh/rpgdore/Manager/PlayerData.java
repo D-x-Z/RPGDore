@@ -1,5 +1,7 @@
 package net.danh.rpgdore.Manager;
 
+import net.danh.rpgdore.Manager.Combo.ComboManager;
+
 public class PlayerData {
 
     private final String name;
@@ -10,8 +12,9 @@ public class PlayerData {
     private final Integer stamina;
     private final Integer max_stamina;
     private final String class_name;
+    private final ComboManager comboManager;
 
-    public PlayerData(String name, Integer xp, Integer level, Integer mana, Integer max_mana, Integer stamina, Integer max_stamina, String class_name) {
+    public PlayerData(String name, Integer xp, Integer level, Integer mana, Integer max_mana, Integer stamina, Integer max_stamina, String class_name, ComboManager comboManager) {
         this.name = name;
         this.xp = xp;
         this.level = level;
@@ -20,6 +23,7 @@ public class PlayerData {
         this.stamina = stamina;
         this.max_stamina = max_stamina;
         this.class_name = class_name;
+        this.comboManager = comboManager;
     }
 
     public String getPlayer() {
@@ -52,5 +56,9 @@ public class PlayerData {
 
     public String getClassName() {
         return class_name;
+    }
+
+    public ComboManager getComboManager() {
+        return comboManager;
     }
 }
