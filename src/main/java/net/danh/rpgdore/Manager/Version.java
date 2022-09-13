@@ -13,7 +13,7 @@ public class Version extends DVersion {
 
     @Override
     public String getDevBuildVersion() {
-        return Status.FALSE.getSymbol();
+        return Status.TRUE.getSymbol();
     }
 
     @Override
