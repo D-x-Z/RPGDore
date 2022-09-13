@@ -37,6 +37,8 @@ public class File {
                 if (!class_name.equalsIgnoreCase("ex-class-file")) {
                     classManager.getFileManager().save(true, false);
                     sender.sendMessage(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Loaded class " + class_name + " with priority " + priority));
+                } else {
+                    sender.sendMessage(Chat.colorize("&cYou can't set name class is ex-class-file!"));
                 }
             }
         }
