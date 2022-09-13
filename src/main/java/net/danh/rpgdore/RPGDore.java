@@ -236,3 +236,5 @@ public final class RPGDore extends JavaPlugin {
         PAPER, SPIGOT, BUKKIT
     }
 }
+
+//#            [`Click to download`](https://nightly.link/${{github.repository}}/workflows/Development-Builds/master/%5B%23${{github.run_number}}%5D-RPGDore.zip)
