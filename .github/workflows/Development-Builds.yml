@@ -41,4 +41,5 @@ jobs:
           embed-description: |
             ${{ github.event.head_commit.message }}
             
-            [`Click to download`](https://nightly.link/${{github.repository}}/workflows/Development-Builds/master/%5B%23${{github.run_number}}%5D-RPGDore.zip)
+#            [`Click to download`](https://nightly.link/${{github.repository}}/workflows/Development-Builds/master/%5B%23${{github.run_number}}%5D-RPGDore.zip)
+            [`Downlaod`](http://103.200.21.90:2086/job/RPGDore/net.danh$RPGDore/)
