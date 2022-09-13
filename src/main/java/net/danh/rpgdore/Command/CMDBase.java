@@ -21,12 +21,12 @@ import static net.danh.dcore.Utils.Player.sendPlayerMessage;
 
 public class CMDBase extends net.danh.dcore.Commands.CMDBase {
     public CMDBase(JavaPlugin core) {
-        super(core, "rpgdore");
+        super(core, "RPGDore");
     }
 
     @Override
     public void playerexecute(Player p, String[] args) {
-        if (p.hasPermission("rpgdore.admin")) {
+        if (p.hasPermission("RPGDore.admin")) {
             if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("version") || args[0].equalsIgnoreCase("v")) {
                     sendPlayerMessage(p, "&e&m                     &b RPGDore &e&m                    ");
@@ -228,7 +228,7 @@ public class CMDBase extends net.danh.dcore.Commands.CMDBase {
         List<String> commands = new ArrayList<>();
         List<String> arg_1 = new ArrayList<>(Arrays.asList("xp", "level", "mana", "max_mana", "stamina", "max_stamina", "class", "priority"));
         List<String> arg_2 = new ArrayList<>(Arrays.asList("add", "set", "remove"));
-        if (sender.hasPermission("rpgdore.admin")) {
+        if (sender.hasPermission("RPGDore.admin")) {
             if (args.length == 1) {
                 commands.add("xp");
                 commands.add("level");
