@@ -1,5 +1,6 @@
 package net.danh.rpgdore.Manager.Combo;
 
+import net.danh.rpgdore.Resource.File;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -27,7 +28,17 @@ public class Manager {
             }
             comboMap.get(p.getName()).add(click);
         }
-        net.danh.dcore.Utils.Player.sendPlayerMessageType(p, null, comboMap.get(p.getName()).toString());
+        String combo_1 = comboMap.get(p.getName()).toString();
+        combo_1 = combo_1.replace("RIGHT", File.getMessage().getConfig().getString("key.Right", "RIGHT"));
+        combo_1 = combo_1.replace("LEFT", File.getMessage().getConfig().getString("key.Left", "LEFT"));
+        boolean bound = File.getMessage().getConfig().getBoolean("key.RemoveBound");
+        if (!bound) {
+            net.danh.dcore.Utils.Player.sendPlayerMessageType(p, null, combo_1);
+        } else {
+            net.danh.dcore.Utils.Player.sendPlayerMessageType(p, null, combo_1
+                    .replace("[", "")
+                    .replace("]", ""));
+        }
 
     }
 

@@ -13,6 +13,10 @@ class_help:
   - "&a/class cast <skill_name> - Cast skill by using command"
   - "&a/class bind [COMBO] <skill_name> - Bind skill to combo"
   - "&bCOMBO: RRR, RRL, RLR, LRR, LLR, LRL, RLL"
+key:
+  Right: "Right"
+  Left: "Left"
+  RemoveBound: true
 combo:
   RRR: "Right Right Right"
   RRL: "Right Right Left"

@@ -92,10 +92,6 @@
             <id>phoenix</id>
             <url>https://nexus.phoenixdvpt.fr/repository/maven-public/</url>
         </repository>
-        <repository>
-            <id>dxz</id>
-            <url>http://103.200.21.90:8081/repository/maven-nexus-repo/</url>
-        </repository>
     </repositories>
 
     <dependencies>
