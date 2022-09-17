@@ -43,9 +43,11 @@ public class Manager {
     }
 
     public static Combo getCombo(Player p) {
-        for (Combo value : combos) {
-            if (Arrays.equals(value.getClickTypes(), comboMap.get(p.getName()).toArray())) {
-                return value;
+        if (comboMap.get(p.getName()) != null) {
+            for (Combo value : combos) {
+                if (Arrays.equals(value.getClickTypes(), comboMap.get(p.getName()).toArray())) {
+                    return value;
+                }
             }
         }
         return null;
