@@ -10,7 +10,6 @@ import net.danh.rpgdore.Database.Database;
 import net.danh.rpgdore.Database.SQLite;
 import net.danh.rpgdore.Event.Interact;
 import net.danh.rpgdore.Event.JoinQuit;
-import net.danh.rpgdore.Hook.MythicMobs.EXPDrop;
 import net.danh.rpgdore.Hook.MythicMobs.Event.Condition;
 import net.danh.rpgdore.Hook.MythicMobs.Event.Mechanic;
 import net.danh.rpgdore.Hook.MythicMobs.Event.Reload;
@@ -169,16 +168,12 @@ public final class RPGDore extends JavaPlugin {
                 getServer().getPluginManager().registerEvents(new Reload(), this);
                 getServer().getPluginManager().registerEvents(new Mechanic(), this);
                 getServer().getPluginManager().registerEvents(new Condition(), this);
-                getServer().getPluginManager().registerEvents(new EXPDrop(), this);
                 RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Loaded system compatible with MythicMobs"));
                 RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Mechanics:"));
                 RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f - rpgdore_mechanic{action=[add/remove];type=[xp/level/mana/max_mana/stamina/max_stamina/priority];amount=[number-number/number]}"));
                 RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f TargetConditions:"));
                 RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f - rpgdore_condition{t=[xp/level/mana/max_mana/stamina/max_stamina];a=[number]} true"));
                 RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f - rpgdore_condition{t=class;a=[class_name]} true"));
-                RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Drops:"));
-                RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f - rpgdore-xp [number/number1-number2] [50%/0.5]"));
-
             } else {
                 RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.FALSE.getSymbol() + "&c Loaded system compatible with MythicMobs"));
                 RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.FALSE.getSymbol() + "&c You can't register custom mechanics and conditions in MythicMobs v4!"));
