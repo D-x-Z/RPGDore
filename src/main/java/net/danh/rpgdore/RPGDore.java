@@ -88,7 +88,7 @@ public final class RPGDore extends JavaPlugin {
         RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Loaded data for online players while the plugin was starting"));
         RPGDore.getRPGDore().getLogger().info(Chat.colorize("#dbdf7f-------------------- &bRPGDore #dbdf7f--------------------"));
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, Hologram::deleteHolo, 0L, 1L);
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> getServer().getOnlinePlayers().forEach(this::snycXPBar), 0L, 1L);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> getServer().getOnlinePlayers().forEach(this::syncXPBar), 0L, 1L);
     }
 
     @Override
@@ -111,12 +111,14 @@ public final class RPGDore extends JavaPlugin {
         }
     }
 
-    public void snycXPBar(Player p) {
+    public void syncXPBar(Player p) {
         float xp = XP.getXP(p);
         float level = Level.getLevel(p);
         float req = level * 1000;
-        p.setExp(Float.parseFloat(String.valueOf(xp / req)));
-        p.setLevel((int) level);
+        if ((xp / req) <= 1 && (xp / req) >= 0) {
+            p.setExp(xp / req);
+            p.setLevel((int) level);
+        }
     }
 
     public void checkVersion(JavaPlugin plugin) {
