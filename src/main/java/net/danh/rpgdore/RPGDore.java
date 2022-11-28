@@ -54,8 +54,15 @@ public final class RPGDore extends JavaPlugin {
     }
 
     @Override
-    public void onEnable() {
+    public void onLoad() {
         ins = this;
+        if (getServer().getPluginManager().getPlugin("MMOItems") != null) {
+            MMOItems.plugin.setRPG(new Handler());
+        }
+    }
+
+    @Override
+    public void onEnable() {
         checkVersion(this);
         RPGDore.getRPGDore().getLogger().info(Chat.colorize("&e-------------------- &bRPGDore &e--------------------"));
         registerPlaceholderAPI();
