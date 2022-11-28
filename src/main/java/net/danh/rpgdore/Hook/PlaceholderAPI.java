@@ -1,6 +1,7 @@
 package net.danh.rpgdore.Hook;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import net.danh.rpgdore.Manager.Number;
 import net.danh.rpgdore.Manager.PData.Level;
 import net.danh.rpgdore.Manager.PData.Mana;
 import net.danh.rpgdore.Manager.PData.Stamina;
@@ -54,6 +55,27 @@ public class PlaceholderAPI extends PlaceholderExpansion {
         }
         if (args.equalsIgnoreCase("max_stamina")) {
             return String.valueOf(Stamina.getMaxStamina(p));
+        }
+        if (args.equalsIgnoreCase("format_xp")) {
+            return Number.format(XP.getXP(p));
+        }
+        if (args.equalsIgnoreCase("format_level")) {
+            return Number.format(Level.getLevel(p));
+        }
+        if (args.equalsIgnoreCase("format_xp_req")) {
+            return Number.format(Level.getLevel(p) * 1000);
+        }
+        if (args.equalsIgnoreCase("format_mana")) {
+            return Number.format(Mana.getMana(p));
+        }
+        if (args.equalsIgnoreCase("format_max_mana")) {
+            return Number.format(Mana.getMaxMana(p));
+        }
+        if (args.equalsIgnoreCase("format_stamina")) {
+            return Number.format(Stamina.getStamina(p));
+        }
+        if (args.equalsIgnoreCase("format_max_stamina")) {
+            return Number.format(Stamina.getMaxStamina(p));
         }
         if (args.equalsIgnoreCase("version")) {
             return getVersion();
