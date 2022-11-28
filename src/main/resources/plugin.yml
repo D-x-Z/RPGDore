@@ -3,6 +3,8 @@ version: '${project.version}'
 main: net.danh.rpgdore.RPGDore
 api-version: 1.13
 authors: [ VoChiDanh ]
+softdepend:
+  - ShopGUIPlus
 commands:
   RPGDore:
     usage: /RPGDore

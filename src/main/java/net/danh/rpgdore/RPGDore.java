@@ -13,6 +13,7 @@ import net.danh.rpgdore.Hook.MythicMobs.Event.Condition;
 import net.danh.rpgdore.Hook.MythicMobs.Event.Mechanic;
 import net.danh.rpgdore.Hook.MythicMobs.Event.Reload;
 import net.danh.rpgdore.Hook.PlaceholderAPI;
+import net.danh.rpgdore.Hook.ShopGUIPlusHook;
 import net.danh.rpgdore.MMOItems.Handler;
 import net.danh.rpgdore.Manager.Hologram;
 import net.danh.rpgdore.Manager.ManagerPlayerData;
@@ -66,6 +67,7 @@ public final class RPGDore extends JavaPlugin {
         loadDataBase();
         getServer().getOnlinePlayers().forEach(ManagerPlayerData::loadPlayerData);
         RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "&e Loaded data for online players while the plugin was starting"));
+        hookIntoShopGUIPlus();
         RPGDore.getRPGDore().getLogger().info(Chat.colorize("&e-------------------- &bRPGDore &e--------------------"));
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, Hologram::deleteHolo, 0L, 1L);
     }
@@ -76,6 +78,16 @@ public final class RPGDore extends JavaPlugin {
         Hologram.deleteHolo();
         new Files(this, "config").save();
     }
+
+    private void hookIntoShopGUIPlus() {
+        if (Bukkit.getPluginManager().getPlugin("ShopGUIPlus") != null) {
+            Bukkit.getPluginManager().registerEvents(new ShopGUIPlusHook(), this);
+            getLogger().info("ShopGUI+ detected.");
+        } else {
+            getLogger().warning("ShopGUI+ not found.");
+        }
+    }
+
 
     private String getServerName(SERVER_TYPE server_type) {
         if (server_type.equals(SERVER_TYPE.BUKKIT)) {
