@@ -1,6 +1,8 @@
 package net.danh.rpgdore.Manager.Class;
 
 import io.lumine.mythic.bukkit.MythicBukkit;
+import io.lumine.mythic.lib.api.player.MMOPlayerData;
+import io.lumine.mythic.lib.player.cooldown.CooldownMap;
 import net.danh.dcore.Utils.Chat;
 import net.danh.rpgdore.Manager.PData.Level;
 import net.danh.rpgdore.Resource.File;
@@ -60,12 +62,26 @@ public class ClassManager {
     public void castSkill(Player p, String skill) {
         int level = Level.getLevel(p);
         int req = getReqSkills(skill);
-        if (getSkillName().contains(skill)) {
-            if (level >= req) {
-                MythicBukkit.inst().getSkillManager().getSkill(skill).ifPresentOrElse(value -> MythicBukkit.inst().getAPIHelper().castSkill(p, value.getInternalName()), () -> net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("skill_is_null", "&cSkill #name# is null").replace("#name#", skill)));
-            } else {
-                net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("not_enough_level", "&cYou need reach level #level#").replace("#level#", String.valueOf(req)));
+        MMOPlayerData data = MMOPlayerData.get(p);
+        CooldownMap map = data.getCooldownMap();
+        double remaining = map.getCooldown(skill);
+        boolean isOnCooldown = map.isOnCooldown(skill);
+        if (!isOnCooldown) {
+            if (getSkillName().contains(skill)) {
+                if (level >= req) {
+                    MythicBukkit.inst().getSkillManager().getSkill(skill).ifPresentOrElse(value -> {
+                        MythicBukkit.inst().getAPIHelper().castSkill(p, value.getInternalName());
+                        map.applyCooldown(skill, value.getConfig().getDouble("Cooldown"));
+                    }, () -> {
+                        net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("skill_is_null", "&cSkill #name# is null").replace("#name#", skill));
+                    });
+                } else {
+                    net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("not_enough_level", "&cYou need reach level #level#").replace("#level#", String.valueOf(req)));
+                }
             }
+        } else {
+            net.danh.dcore.Utils.Player.sendPlayerMessage(p, File.getMessage().getConfig().getString("cooldown_skill", "&cYou need wait %time%s to cast skill again")
+                    .replace("%time%", String.valueOf(remaining)));
         }
     }
 }

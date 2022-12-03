@@ -3,6 +3,7 @@ not_enough_level: "&cYou need reach level #level#"
 skill_cooldown: "&cSkill #name# on cooldown"
 bind_skill: "&aBinded skill #name# to #combo#"
 not_enough_priority: "&cYou need reach priority #amount# to choose this class!"
+cooldown_skill: "&cYou need wait %time%s to cast skill again"
 dore_help:
   - "&a/rpgdore [TYPE] [ACTION] [PLAYER] [AMOUNT] - add/remove/set player's data type"
   - "&bTYPE: xp, level, mana, max_mana, stamina, max_stamina, class (Only work with set), priority"
