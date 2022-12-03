@@ -7,6 +7,8 @@ depend:
   - MMOItems
   - MythicLib
   - MythicMobs
+softdepend:
+  - ShopGUIPlus
 commands:
   RPGDore:
     usage: /RPGDore
