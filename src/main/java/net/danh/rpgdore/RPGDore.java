@@ -8,7 +8,6 @@ import net.danh.rpgdore.Command.CMDBase;
 import net.danh.rpgdore.Command.ClassCMD;
 import net.danh.rpgdore.Database.Database;
 import net.danh.rpgdore.Database.SQLite;
-import net.danh.rpgdore.Event.Interact;
 import net.danh.rpgdore.Event.JoinQuit;
 import net.danh.rpgdore.Hook.MythicMobs.Event.Condition;
 import net.danh.rpgdore.Hook.MythicMobs.Event.Mechanic;
@@ -195,7 +194,7 @@ public final class RPGDore extends JavaPlugin {
 
     public void registerEvents() {
         getServer().getPluginManager().registerEvents(new JoinQuit(), this);
-        getServer().getPluginManager().registerEvents(new Interact(), this);
+        /*getServer().getPluginManager().registerEvents(new Interact(), this);*/
         RPGDore.getRPGDore().getLogger().info(Chat.colorize(Status.TRUE.getSymbol() + "#dbdf7f Registered events"));
         RPGDore.getRPGDore().getLogger().info(Chat.colorize("&7"));
     }

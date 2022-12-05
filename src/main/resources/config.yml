@@ -1,4 +1,5 @@
 debug: false
+skill: false
 holo:
   xp: "&e+ #xp# XP [#player#]"
 class:
