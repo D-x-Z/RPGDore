@@ -6,7 +6,7 @@
 
     <groupId>net.danh</groupId>
     <artifactId>RPGDore</artifactId>
-    <version>1.0</version>
+    <version>1.0-b1</version>
     <packaging>jar</packaging>
 
     <name>RPGDore</name>
@@ -69,16 +69,16 @@
 
     <repositories>
         <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
             <id>papermc-repo</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
         <repository>
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
         </repository>
         <repository>
             <id>lumine-repo</id>
@@ -90,7 +90,7 @@
         </repository>
         <repository>
             <id>phoenix</id>
-            <url>https://nexus.phoenixdvpt.fr/repository/maven-public/</url>
+            <url>https://nexus.phoenixdevt.fr/repository/maven-public/</url>
         </repository>
     </repositories>
 
@@ -110,13 +110,13 @@
         <dependency>
             <groupId>io.lumine</groupId>
             <artifactId>MythicLib-dist</artifactId>
-            <version>1.4.3-SNAPSHOT</version>
+            <version>1.5.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.Indyuce</groupId>
             <artifactId>MMOItems-API</artifactId>
-            <version>6.8.3-SNAPSHOT</version>
+            <version>6.9.2-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -128,8 +128,7 @@
         <dependency>
             <groupId>com.github.D-x-Z</groupId>
             <artifactId>DCore</artifactId>
-            <version>4bcdf9c914</version>
-            <scope>compile</scope>
+            <version>5501499af4</version>
         </dependency>
         <dependency>
             <groupId>com.github.brcdev-minecraft</groupId>

@@ -7,11 +7,8 @@ import io.lumine.mythic.api.skills.SkillMetadata;
 import io.lumine.mythic.api.skills.SkillResult;
 import io.lumine.mythic.bukkit.BukkitAdapter;
 import net.danh.rpgdore.Manager.Hologram;
-import net.danh.rpgdore.Manager.ManagerPlayerData;
-import net.danh.rpgdore.Manager.PData.Level;
-import net.danh.rpgdore.Manager.PData.Mana;
-import net.danh.rpgdore.Manager.PData.Stamina;
-import net.danh.rpgdore.Manager.PData.XP;
+import net.danh.rpgdore.Manager.PData.*;
+import net.danh.rpgdore.Resource.File;
 import org.bukkit.entity.Player;
 
 import java.util.Objects;
@@ -40,13 +37,17 @@ public class Mechanic implements ITargetedEntitySkill {
                             int RPGDore = new Random().nextInt(Integer.parseInt(amount.split("-")[0]), Integer.parseInt(amount.split("-")[1]));
                             if (type.equalsIgnoreCase("xp")) {
                                 XP.addXP(p, RPGDore);
-                                Hologram.createHolo(p, data.getCaster().getLocation().toPosition().toLocation(), Objects.requireNonNull(ManagerPlayerData.getConfig().getString("holo.xp"))
+                                Hologram.createHolo(p, data.getCaster().getLocation().toPosition().toLocation(), Objects.requireNonNull(File.getConfig().getConfig().getString("holo.xp"))
                                         .replaceAll("#xp#", String.format("%,d", RPGDore))
                                         .replaceAll("#player#", p.getDisplayName()));
                                 return SkillResult.SUCCESS;
                             }
                             if (type.equalsIgnoreCase("level")) {
                                 Level.addLevel(p, RPGDore);
+                                return SkillResult.SUCCESS;
+                            }
+                            if (type.equalsIgnoreCase("priority")) {
+                                Priority.addPriority(p, RPGDore);
                                 return SkillResult.SUCCESS;
                             }
                             if (type.equalsIgnoreCase("mana")) {
@@ -69,13 +70,17 @@ public class Mechanic implements ITargetedEntitySkill {
                             int RPGDore = Integer.parseInt(amount.split("-")[0]);
                             if (type.equalsIgnoreCase("xp")) {
                                 XP.addXP(p, RPGDore);
-                                Hologram.createHolo(p, data.getCaster().getLocation().toPosition().toLocation(), Objects.requireNonNull(ManagerPlayerData.getConfig().getString("holo.xp"))
+                                Hologram.createHolo(p, data.getCaster().getLocation().toPosition().toLocation(), Objects.requireNonNull(File.getConfig().getConfig().getString("holo.xp"))
                                         .replaceAll("#xp#", String.format("%,d", RPGDore))
                                         .replaceAll("#player#", p.getDisplayName()));
                                 return SkillResult.SUCCESS;
                             }
                             if (type.equalsIgnoreCase("level")) {
                                 Level.addLevel(p, RPGDore);
+                                return SkillResult.SUCCESS;
+                            }
+                            if (type.equalsIgnoreCase("priority")) {
+                                Priority.addPriority(p, RPGDore);
                                 return SkillResult.SUCCESS;
                             }
                             if (type.equalsIgnoreCase("mana")) {
@@ -99,13 +104,17 @@ public class Mechanic implements ITargetedEntitySkill {
                         int RPGDore = Integer.parseInt(amount);
                         if (type.equalsIgnoreCase("xp")) {
                             XP.addXP(p, RPGDore);
-                            Hologram.createHolo(p, data.getCaster().getLocation().toPosition().toLocation(), Objects.requireNonNull(ManagerPlayerData.getConfig().getString("holo.xp"))
+                            Hologram.createHolo(p, data.getCaster().getLocation().toPosition().toLocation(), Objects.requireNonNull(File.getConfig().getConfig().getString("holo.xp"))
                                     .replaceAll("#xp#", String.format("%,d", RPGDore))
                                     .replaceAll("#player#", p.getDisplayName()));
                             return SkillResult.SUCCESS;
                         }
                         if (type.equalsIgnoreCase("level")) {
                             Level.addLevel(p, RPGDore);
+                            return SkillResult.SUCCESS;
+                        }
+                        if (type.equalsIgnoreCase("priority")) {
+                            Priority.addPriority(p, RPGDore);
                             return SkillResult.SUCCESS;
                         }
                         if (type.equalsIgnoreCase("mana")) {
@@ -138,6 +147,10 @@ public class Mechanic implements ITargetedEntitySkill {
                                 Level.removeLevel(p, RPGDore);
                                 return SkillResult.SUCCESS;
                             }
+                            if (type.equalsIgnoreCase("priority")) {
+                                Priority.removePriority(p, RPGDore);
+                                return SkillResult.SUCCESS;
+                            }
                             if (type.equalsIgnoreCase("mana")) {
                                 Mana.removeMana(p, RPGDore);
                                 return SkillResult.SUCCESS;
@@ -162,6 +175,10 @@ public class Mechanic implements ITargetedEntitySkill {
                             }
                             if (type.equalsIgnoreCase("level")) {
                                 Level.removeLevel(p, rpgdore);
+                                return SkillResult.SUCCESS;
+                            }
+                            if (type.equalsIgnoreCase("priority")) {
+                                Priority.removePriority(p, rpgdore);
                                 return SkillResult.SUCCESS;
                             }
                             if (type.equalsIgnoreCase("mana")) {
@@ -189,6 +206,10 @@ public class Mechanic implements ITargetedEntitySkill {
                         }
                         if (type.equalsIgnoreCase("level")) {
                             Level.removeLevel(p, rpgdore);
+                            return SkillResult.SUCCESS;
+                        }
+                        if (type.equalsIgnoreCase("priority")) {
+                            Priority.removePriority(p, rpgdore);
                             return SkillResult.SUCCESS;
                         }
                         if (type.equalsIgnoreCase("mana")) {

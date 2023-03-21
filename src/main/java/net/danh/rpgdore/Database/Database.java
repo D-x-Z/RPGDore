@@ -1,5 +1,6 @@
 package net.danh.rpgdore.Database;
 
+import net.danh.rpgdore.Manager.Combo.ComboManager;
 import net.danh.rpgdore.Manager.PlayerData;
 import net.danh.rpgdore.RPGDore;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -46,7 +47,7 @@ public abstract class Database {
             ps = conn.prepareStatement("SELECT * FROM " + table + " WHERE player = '" + name + "';");
             rs = ps.executeQuery();
             if (rs.next()) {
-                playerData = new PlayerData(rs.getString("player"), rs.getInt("xp"), rs.getInt("level"), rs.getInt("mana"), rs.getInt("max_mana"), rs.getInt("stamina"), rs.getInt("max_stamina")); // Return the players amount of kills. If you wanted to get total (just a random number for an example for you guys) You would change this to total!
+                playerData = new PlayerData(rs.getString("player"), rs.getInt("xp"), rs.getInt("level"), rs.getInt("mana"), rs.getInt("max_mana"), rs.getInt("stamina"), rs.getInt("max_stamina"), rs.getString("class"), rs.getInt("priority"), new ComboManager(rs.getString("combo1"), rs.getString("combo2"), rs.getString("combo3"), rs.getString("combo4"), rs.getString("combo5"), rs.getString("combo6"), rs.getString("combo7")));
                 return playerData;
             } else {
                 return null;
@@ -71,7 +72,7 @@ public abstract class Database {
         PreparedStatement ps = null;
         try {
             conn = getSQLConnection();
-            ps = conn.prepareStatement("INSERT INTO " + table + " (player,xp,level,mana,max_mana,stamina,max_stamina) VALUES(?,?,?,?,?,?,?)"); // IMPORTANT. In SQLite class, We made 3 colums. player, Kills, Total.
+            ps = conn.prepareStatement("INSERT INTO " + table + " (player,xp,level,mana,max_mana,stamina,max_stamina,class,priority,combo1,combo2,combo3,combo4,combo5,combo6,combo7) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1, playerData.getPlayer());
             ps.setInt(2, playerData.getXP());
             ps.setInt(3, playerData.getLevel());
@@ -79,6 +80,15 @@ public abstract class Database {
             ps.setInt(5, playerData.getMaxMana());
             ps.setInt(6, playerData.getStamina());
             ps.setInt(7, playerData.getMaxMana());
+            ps.setString(8, playerData.getClassName());
+            ps.setInt(9, playerData.getPriority());
+            ps.setString(10, playerData.getComboManager().getSkill1());
+            ps.setString(11, playerData.getComboManager().getSkill2());
+            ps.setString(12, playerData.getComboManager().getSkill3());
+            ps.setString(13, playerData.getComboManager().getSkill4());
+            ps.setString(14, playerData.getComboManager().getSkill5());
+            ps.setString(15, playerData.getComboManager().getSkill6());
+            ps.setString(16, playerData.getComboManager().getSkill7());
             ps.executeUpdate();
         } catch (SQLException ex) {
             plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
@@ -99,7 +109,7 @@ public abstract class Database {
         PreparedStatement ps = null;
         try {
             conn = getSQLConnection();
-            ps = conn.prepareStatement("UPDATE " + table + " SET xp = ?, level = ?, mana = ?, max_mana = ?, stamina = ?, max_stamina = ? " +
+            ps = conn.prepareStatement("UPDATE " + table + " SET xp = ?, level = ?, mana = ?, max_mana = ?, stamina = ?, max_stamina = ?, class = ?, priority = ?, combo1 = ?, combo2 = ?, combo3 = ?, combo4 = ?, combo5 = ?, combo6  = ?, combo7 = ?" +
                     "WHERE player = ?");
             conn.setAutoCommit(false);
             ps.setInt(1, playerData.getXP());
@@ -108,7 +118,16 @@ public abstract class Database {
             ps.setInt(4, playerData.getMaxMana());
             ps.setInt(5, playerData.getStamina());
             ps.setInt(6, playerData.getMaxMana());
-            ps.setString(7, playerData.getPlayer());
+            ps.setString(7, playerData.getClassName());
+            ps.setInt(8, playerData.getPriority());
+            ps.setString(9, playerData.getComboManager().getSkill1());
+            ps.setString(10, playerData.getComboManager().getSkill2());
+            ps.setString(11, playerData.getComboManager().getSkill3());
+            ps.setString(12, playerData.getComboManager().getSkill4());
+            ps.setString(13, playerData.getComboManager().getSkill5());
+            ps.setString(14, playerData.getComboManager().getSkill6());
+            ps.setString(15, playerData.getComboManager().getSkill7());
+            ps.setString(16, playerData.getPlayer());
             ps.addBatch();
             ps.executeBatch();
             conn.commit();

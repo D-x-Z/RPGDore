@@ -6,6 +6,7 @@ authors: [ VoChiDanh ]
 depend:
   - MMOItems
   - MythicLib
+  - MythicMobs
 softdepend:
   - ShopGUIPlus
 commands:
@@ -14,6 +15,13 @@ commands:
     permission: RPGDore.admin
     aliases:
       - dore
+  class:
+    usage: /Class
+    permission: RPGDore.user
+    aliases:
+      - skill
 permissions:
   RPGDore.admin:
     default: op
+  RPGDore.user:
+    default: true

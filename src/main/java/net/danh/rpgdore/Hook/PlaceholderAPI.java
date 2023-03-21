@@ -1,11 +1,10 @@
 package net.danh.rpgdore.Hook;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import net.danh.rpgdore.Manager.Combo.Combo;
+import net.danh.rpgdore.Manager.Combo.Manager;
 import net.danh.rpgdore.Manager.Number;
-import net.danh.rpgdore.Manager.PData.Level;
-import net.danh.rpgdore.Manager.PData.Mana;
-import net.danh.rpgdore.Manager.PData.Stamina;
-import net.danh.rpgdore.Manager.PData.XP;
+import net.danh.rpgdore.Manager.PData.*;
 import net.danh.rpgdore.RPGDore;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -76,6 +75,33 @@ public class PlaceholderAPI extends PlaceholderExpansion {
         }
         if (args.equalsIgnoreCase("format_max_stamina")) {
             return Number.format(Stamina.getMaxStamina(p));
+        }
+        if (args.equalsIgnoreCase("class")) {
+            return ClassName.getClassName(p);
+        }
+        if (args.equalsIgnoreCase("priority")) {
+            return String.valueOf(Priority.getPriority(p));
+        }
+        if (args.equalsIgnoreCase("skill_1")) {
+            return Manager.getSkill(p, Combo.MOT);
+        }
+        if (args.equalsIgnoreCase("skill_2")) {
+            return Manager.getSkill(p, Combo.HAI);
+        }
+        if (args.equalsIgnoreCase("skill_3")) {
+            return Manager.getSkill(p, Combo.BA);
+        }
+        if (args.equalsIgnoreCase("skill_4")) {
+            return Manager.getSkill(p, Combo.BON);
+        }
+        if (args.equalsIgnoreCase("skill_5")) {
+            return Manager.getSkill(p, Combo.NAM);
+        }
+        if (args.equalsIgnoreCase("skill_6")) {
+            return Manager.getSkill(p, Combo.SAU);
+        }
+        if (args.equalsIgnoreCase("skill_7")) {
+            return Manager.getSkill(p, Combo.BAY);
         }
         if (args.equalsIgnoreCase("version")) {
             return getVersion();
